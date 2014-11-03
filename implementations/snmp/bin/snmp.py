@@ -244,9 +244,9 @@ def v3trapCallback(snmpEngine,stateReference,contextEngineId, contextName,varBin
         server = ""
         ( transportDomain,transportAddress ) = snmpEngine.msgAndPduDsp.getTransportInfo(stateReference)
         try:
-            server = "%s" % transportAddress
-            trap_metadata += 'notification_from_address = "%s" ' % (transportAddress)
-            trap_metadata += 'notification_from_domain = "%s" ' % (transportDomain)                              
+            server = "%s" % transportAddress[0]
+            trap_metadata += 'notification_from_address = "%s" ' % (transportAddress[0])
+            trap_metadata += 'notification_from_domain = "%s" ' % (transportDomain[0])                              
         except: # catch *all* exceptions
             e = sys.exc_info()[1]
             logging.error("Exception resolving source address/domain of the trap: %s" % str(e))
